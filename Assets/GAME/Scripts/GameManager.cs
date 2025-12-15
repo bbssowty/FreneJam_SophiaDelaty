@@ -33,11 +33,9 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W)) { Upgrade(true); }
         if (Input.GetKeyDown(KeyCode.S)) { BuyUnit(true); }
-        if (Input.GetKeyDown(KeyCode.D)) { SendUnit(true); }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) { Upgrade(false); }
         if (Input.GetKeyDown(KeyCode.UpArrow)) { BuyUnit(false); }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) { SendUnit(false); }
     }
 
     private IEnumerator AddCurrency()
@@ -56,12 +54,6 @@ public class GameManager : MonoBehaviour
     }
 
     private void BuyUnit(bool left)
-    {
-        if (left == true) { Debug.Log("left"); }
-        if (left == false) { Debug.Log("right"); }
-    }
-
-    private void SendUnit(bool left)
     {
         if (left == true) { Debug.Log("left"); }
         if (left == false) { Debug.Log("right"); }
