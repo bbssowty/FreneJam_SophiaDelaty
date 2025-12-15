@@ -5,8 +5,9 @@ public class UnitManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform lSpawn;
     [SerializeField] private Transform rSpawn;
-    [SerializeField] private GameObject lUnitPrefab; //jsp si c bien un go
+    [SerializeField] private GameObject lUnitPrefab;
     [SerializeField] private GameObject rUnitPrefab;
+    [SerializeField] private UnitData unitData; //jme suis arretee la
 
     private void Update()
     {
@@ -17,13 +18,15 @@ public class UnitManager : MonoBehaviour
     private void SendUnit(bool left)
     {
         if (left == true) 
-        { 
-            Debug.Log("left");
+        {
+            GameObject obj = Instantiate(lUnitPrefab);
+            obj.transform.position = lSpawn.position;
         }
 
         if (left == false) 
         {
-            Debug.Log("right");
+            GameObject obj = Instantiate(rUnitPrefab);
+            obj.transform.position = rSpawn.position;
         }
     }
 }

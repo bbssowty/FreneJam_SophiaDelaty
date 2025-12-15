@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CurrencyData currencyData;
     [SerializeField] private UpgradeData upgradeData;
     [SerializeField] private LifeData lifeData;
+    [SerializeField] private UnitData unitData;
 
 
     private bool isCurrencyTimed = true;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
         lifeData.lUnitLifeValue = 2;
         lifeData.rTowerLifeValue = 50;
         lifeData.rUnitLifeValue = 2;
+        unitData.lUnitCount = 0;
+        unitData.rUnitCount = 0;
     }
 
     
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void BuyUnit(bool left)
     {
-        if (left == true) { Debug.Log("left"); }
-        if (left == false) { Debug.Log("right"); }
+        if (left == true && currencyData.lCurrency >= 2) { unitData.lUnitCount += 1; currencyData.lCurrency --; }
+        if (left == false && currencyData.rCurrency >= 2) { unitData.rUnitCount += 1; currencyData.rCurrency--; }
     }
 }

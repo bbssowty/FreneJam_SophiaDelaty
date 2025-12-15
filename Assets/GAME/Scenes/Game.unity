@@ -625,6 +625,7 @@ MonoBehaviour:
   rSpawn: {fileID: 1793361621}
   lUnitPrefab: {fileID: 5715718946164572267, guid: eb139a70f80f46242812958a5c869eb4, type: 3}
   rUnitPrefab: {fileID: 3752664203180361928, guid: 72a2a812b6f8bec4e8a8c556756ca84e, type: 3}
+  unitData: {fileID: 0}
 --- !u!1 &1135422217
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +900,7 @@ MonoBehaviour:
   currencyData: {fileID: 11400000, guid: a3f7ba81c914fae4a8834738cfdbde8e, type: 2}
   upgradeData: {fileID: 11400000, guid: 4d133bfede678794eb5f46eb9d94023e, type: 2}
   lifeData: {fileID: 11400000, guid: 71c7499cd525bb84e910d89cfa81ce07, type: 2}
+  unitData: {fileID: 11400000, guid: c88c6fb7e46a26b4aa482abfe2fa1b43, type: 2}
 --- !u!1 &1672816871
 GameObject:
   m_ObjectHideFlags: 0
