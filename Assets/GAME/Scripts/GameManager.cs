@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
         lifeData.lUnitLifeValue = 2;
         lifeData.rTowerLifeValue = 50;
         lifeData.rUnitLifeValue = 2;
-        unitData.lUnitCount = 0;
-        unitData.rUnitCount = 0;
+        unitData.unitPrice = 5;
+        unitData.tankPrice = 50;
     }
 
     
@@ -35,10 +35,8 @@ public class GameManager : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.W)) { Upgrade(true); }
-        if (Input.GetKeyDown(KeyCode.S)) { BuyUnit(true); }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) { Upgrade(false); }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) { BuyUnit(false); }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) { Upgrade(false); }
     }
 
     private IEnumerator AddCurrency()
@@ -54,11 +52,5 @@ public class GameManager : MonoBehaviour
     {
         if(left == true) { upgradeData.lAttack += 0.5f; }
         if (left == false) { upgradeData.rAttack += 0.5f; }
-    }
-
-    private void BuyUnit(bool left)
-    {
-        if (left == true && currencyData.lCurrency >= 2) { unitData.lUnitCount += 1; currencyData.lCurrency --; }
-        if (left == false && currencyData.rCurrency >= 2) { unitData.rUnitCount += 1; currencyData.rCurrency--; }
     }
 }

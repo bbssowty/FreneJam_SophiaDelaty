@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4175261712864078747}
   - component: {fileID: 1309934871845662166}
-  - component: {fileID: 5893600351664326967}
   m_Layer: 0
   m_Name: RUnit
   m_TagString: Untagged
@@ -88,15 +87,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5893600351664326967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752664203180361928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b75e7c32c095c14b8643db10bfeb68d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
