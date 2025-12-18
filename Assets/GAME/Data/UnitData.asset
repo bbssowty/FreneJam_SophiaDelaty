@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c5470b3bfea8642babce374dd7cca7, type: 3}
   m_Name: UnitData
   m_EditorClassIdentifier: 
-  lUnitCount: 0
-  rUnitCount: 0
+  unitPrice: 5
+  tankPrice: 50

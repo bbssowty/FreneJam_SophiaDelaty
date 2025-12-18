@@ -1,56 +1,76 @@
 using System.Collections;
 using UnityEngine;
 
+public enum CurrentPlayer
+{
+    Player1,
+    Player2
+}
+
 public class GameManager : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private float delay = 1f;
+    [SerializeField] private int defaultCurrency = 20;
+    [SerializeField] private int defaultHP = 500;
+
     [Header("References")]
-    [SerializeField] private CurrencyData currencyData;
-    [SerializeField] private UpgradeData upgradeData;
-    [SerializeField] private LifeData lifeData;
-    [SerializeField] private UnitData unitData;
+    [SerializeField] private PlayerData player1Data;
+    [SerializeField] private PlayerData player2Data;
 
+    [SerializeField] private UpgradeData player1UpgradeData;
+    [SerializeField] private UpgradeData player2UpgradeData;
 
-    private bool isCurrencyTimed = true;
     void Start()
     {
-        currencyData.lCurrency = 1;
-        currencyData.rCurrency = 1;
-        upgradeData.lAttack = 1;
-        upgradeData.rAttack = 1;
-        lifeData.lTowerLifeValue = 50;
-        lifeData.lUnitLifeValue = 2;
-        lifeData.rTowerLifeValue = 50;
-        lifeData.rUnitLifeValue = 2;
-        unitData.unitPrice = 5;
-        unitData.tankPrice = 50;
+        StartCoroutine(AddCurrency());
+
+        player1Data.currentCurrency = defaultCurrency;
+        player1Data.currentHP = defaultHP;
+
+        player2Data.currentCurrency = defaultCurrency;
+        player2Data.currentHP = defaultHP;
+
+        player1UpgradeData.damageLevel = 1;
+        player1UpgradeData.healthLevel = 1;
+
+        player2UpgradeData.damageLevel = 1;
+        player2UpgradeData.healthLevel = 1;
     }
 
-    
-    void Update()
+    private void Update()
     {
-        if (isCurrencyTimed)
+        if (Input.GetKeyDown(KeyCode.W)) UpgradePlayer(CurrentPlayer.Player1, player1UpgradeData);
+        if (Input.GetKeyDown(KeyCode.UpArrow)) UpgradePlayer(CurrentPlayer.Player2, player2UpgradeData);
+    }
+
+    private void UpgradePlayer(CurrentPlayer player, UpgradeData data)
+    {
+        if(player == CurrentPlayer.Player1)
         {
-            StartCoroutine(AddCurrency());
+            if (player1Data.currentCurrency - data.PricePerUpgrade <= 0) return;
+
+            player1Data.currentCurrency -= (int)data.PricePerUpgrade;
+            data.damageLevel += 1;
+            data.healthLevel += 1;
         }
+        else
+        {
+            if (player2Data.currentCurrency - data.PricePerUpgrade <= 0) return;
 
-
-        if (Input.GetKeyDown(KeyCode.W)) { Upgrade(true); }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow)) { Upgrade(false); }
+            player2Data.currentCurrency -= (int)data.PricePerUpgrade;
+            data.damageLevel += 1;
+            data.healthLevel += 1;
+        }
     }
 
     private IEnumerator AddCurrency()
     {
-        isCurrencyTimed = false;
-        currencyData.lCurrency += 1;
-        currencyData.rCurrency += 1;
-        yield return new WaitForSeconds(currencyData.addCurrencyTimer);
-        isCurrencyTimed = true;
-    }
+        player1Data.currentCurrency += 1;
+        player2Data.currentCurrency += 1;
 
-    private void Upgrade (bool left)
-    {
-        if(left == true) { upgradeData.lAttack += 0.5f; }
-        if (left == false) { upgradeData.rAttack += 0.5f; }
+        yield return new WaitForSeconds(delay);
+
+        StartCoroutine(AddCurrency());
     }
 }

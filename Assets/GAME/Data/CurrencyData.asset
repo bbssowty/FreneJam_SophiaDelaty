@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723ca051677417e44b3d1ed4d39e814c, type: 3}
   m_Name: CurrencyData
   m_EditorClassIdentifier: 
-  lCurrency: 30
-  rCurrency: 30
-  addCurrencyTimer: 1
+  defaultCurrency: 0
+  currentCurrency: 0
+  defaultHP: 0
+  currentHP: 0
