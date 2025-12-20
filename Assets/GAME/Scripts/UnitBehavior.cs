@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UnitBehavior : MonoBehaviour
 {
+    [Header ("References")]
+    [SerializeField] private Animator animator;
     private float health;
     private float damage;
     private float speed;
@@ -38,6 +40,9 @@ public class UnitBehavior : MonoBehaviour
         {
             direction = -1;
         }
+
+        animator.SetBool("isWalking",  true);
+        animator.SetBool("isFighting", false);
     }
 
     private void Update()
@@ -57,7 +62,7 @@ public class UnitBehavior : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(Die());
         }
     }
 
@@ -104,7 +109,16 @@ public class UnitBehavior : MonoBehaviour
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
+        animator.SetBool("isWalking", false); animator.SetBool("isFighting", true);
         yield return new WaitForSeconds(1f / attackSpeed);
         canAttack = true;
+        animator.SetBool("isWalking", true); animator.SetBool("isFighting", false);
+    }
+
+    private IEnumerator Die()
+    {
+        animator.SetTrigger("die");
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
     }
 }
