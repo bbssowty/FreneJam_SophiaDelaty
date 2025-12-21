@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TowerBehaviour : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private PlayerData ownerData;
     [SerializeField] private CurrentPlayer owner;
+
+    public UnityEvent endGame;
 
     public CurrentPlayer GetOwner() => owner;
 
@@ -14,7 +17,7 @@ public class TowerBehaviour : MonoBehaviour
 
         if(ownerData.currentHP <= 0)
         {
-            Debug.Log("Game Over for " + ownerData.name);
+            endGame.Invoke();
         }
     }
 }

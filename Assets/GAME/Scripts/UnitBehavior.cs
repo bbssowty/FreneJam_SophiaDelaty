@@ -118,7 +118,7 @@ public class UnitBehavior : MonoBehaviour
     private IEnumerator Die()
     {
         animator.SetTrigger("die");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(this.gameObject);
     }
 }
